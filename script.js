@@ -19,8 +19,10 @@ function displayResult(result) {
   $('.cities').empty();
   let info = result.current;
   let location = result.location;
+  $('.welcome').addClass('hidden');
   $('.name').text(location.name);
   $('.region').text(location.region);
+  $('.icon').html(`<img src="${info.weather_icons[0]}">`)
   $('.temp').text(`${info.temperature}ºF`);
   $('.feels').text(`feels like: ${info.feelslike}ºF`);
   $('.description').text(info.weather_descriptions[0]);
