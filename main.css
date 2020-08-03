@@ -4,11 +4,12 @@ body {
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
 }
 
 .container {
+    background: #19d9ff;
+    display: inline-grid;
     justify-content: center;
     text-align: center;
     padding: 20px;
@@ -25,9 +26,27 @@ body {
 }
 
 form {
-    margin: auto;
-    margin-top: 40px;
-    margin-left: 20px;
+    margin-bottom: 10px;
+
+}
+
+.header {
+    text-align: center;
+    font-size: 25px;
+}
+
+h1 {
+    margin: 10px;
+}
+
+.temp {
+    font-size: 50px;
+    margin: 10px;
+}
+
+.name {
+    font-weight: bold;
+    justify-self: start;
 }
 
 .submit {
@@ -46,7 +65,7 @@ form {
 }
 
 input[type=text] {
-    width: 100%;
+    width: 200px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 12px;
@@ -58,3 +77,20 @@ input[type=text] {
 }
 
 .submit:hover {opacity: 1}
+
+@media all and (min-width: 800px) {
+    body {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .header {
+        display: flex;
+        width: 800px;
+        justify-content: space-between;
+    }
+
+    #js-form {
+        justify-self: end;
+    }
+}
