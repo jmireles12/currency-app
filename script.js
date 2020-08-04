@@ -9,15 +9,31 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-function getWeather(city) {
+function getData(city) {
   let weatherApi= `http://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`
   let imageApi = `https://images-api.nasa.gov/search?q=sunny`
-    fetch(weatherApi, requestOptions)
-    fetch(imageApi, requestOptions)
-  .then(response => response.json())
-  .then(result => displayResult(result))
-  .catch(error => console.log('error', error));
+
+  Promise.all([weatherApi, imageApi])
+    .then(files => {
+      files.forEach(file => {
+        process(file.json());
+      })
+      //files[0].json()
+      //files[1].json()
+    })
+    .catch(err=> {
+
+    });
 }
+
+//function getWeather(city) {
+ 
+    //fetch(weatherApi, requestOptions)
+    //fetch(imageApi, requestOptions)
+  //.then(response => response.json())
+  //.then(result => displayResult(result))
+  //.catch(error => console.log('error', error));
+//}
 
 //function getImage(description) {
   //fetch(imageApi, requestOptionsNasa)
@@ -65,8 +81,7 @@ function getSubmit() {
     let city = $('input[type="text"]').val();
     let description = $('.description')
     addHtml();
-    getWeather(city);
-    getImage(description);
+    getData(city);
     $('input[type="text"]').val('');
   })
 }
