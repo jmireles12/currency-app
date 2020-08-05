@@ -10,21 +10,25 @@ const requestOptions = {
 };
 
 function getData(city) {
-  let weatherApi= `http://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`
-  let imageApi = `https://images-api.nasa.gov/search?q=sunny`
+  let weatherApi= fetch(`http://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`);
+  let imageApi = fetch(`https://images-api.nasa.gov/search?q=sunny`);
 
-  Promise.all([weatherApi, imageApi])
-    .then(files => {
-      files.forEach(file => {
-        process(file.json());
-      })
+  Promise.all([weatherApi, imageApi]).then(values => {
+    return Promise.all(values.map(r => r.json()));
+  }).then(values => {
+    console.log(values);
+  })
+     // values.forEach(file => {
+       // process(file.json());
+     //})
       //files[0].json()
       //files[1].json()
-    })
-    .catch(err=> {
+    }
+    //.catch(err=> {
 
-    });
-}
+    //});
+    //let process = (prom)
+
 
 //function getWeather(city) {
  
