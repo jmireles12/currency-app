@@ -15,15 +15,14 @@ function getData(city) {
 
   Promise.all([weatherApi, imageApi]).then(values => {
     return Promise.all(values.map(r => r.json()));
-  }).then(values => {
-    console.log(values);
+  }).then(([city, weather]) => {
+    console.log(city);
+    console.log(weather);
+  }).catch(e => {
+    console.log('caugth!');
+    console.log(e);
   })
-     // values.forEach(file => {
-       // process(file.json());
-     //})
-      //files[0].json()
-      //files[1].json()
-    }
+}
     //.catch(err=> {
 
     //});
