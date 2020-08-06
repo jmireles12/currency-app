@@ -1,5 +1,3 @@
-let imageApi = `https://images-api.nasa.gov/search?q=sunny`
-
 const myHeaders = new Headers();
 myHeaders.append("Cookie", "__cfduid=d4d38d3949a73024949360709c4b7c3781595823674");
 
@@ -9,44 +7,22 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-function getData(city) {
+function getData(city, covid) {
   let weatherApi= fetch(`http://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`);
-  let imageApi = fetch(`https://images-api.nasa.gov/search?q=sunny`);
+  let covidApi = fetch(`https://api.covidtracking.com/v1/us/current.json`);
 
-  Promise.all([weatherApi, imageApi]).then(values => {
+  Promise.all([weatherApi, covidApi]).then(values => {
     return Promise.all(values.map(r => r.json()));
-  }).then(([city, weather]) => {
-    console.log(city);
-    console.log(weather);
+  }).then(([city, covid]) => {
+    displayResult(city)
+    addCovidHtml(covid)
   }).catch(e => {
     console.log('caugth!');
     console.log(e);
   })
 }
-    //.catch(err=> {
 
-    //});
-    //let process = (prom)
-
-
-//function getWeather(city) {
- 
-    //fetch(weatherApi, requestOptions)
-    //fetch(imageApi, requestOptions)
-  //.then(response => response.json())
-  //.then(result => displayResult(result))
-  //.catch(error => console.log('error', error));
-//}
-
-//function getImage(description) {
-  //fetch(imageApi, requestOptionsNasa)
-  //.then(response => response.json())
-  //.then(resultNasa => getImage(resultNasa))
-  //.catch(error => console.log('error', error));
- // console.log(resultNasa);
-//}
-
-function addHtml() {
+function addCityHtml() {
   $('.container2').addClass('container');
   $('.results').append(`<h2 class="name"></h2>
     <h3 class="region"></h3>
@@ -58,12 +34,18 @@ function addHtml() {
     <p class="wind"></p>`)
 }
 
-function displayResult(result) {
-  console.log(result);
-  let info = result.current;
-  let location = result.location;
+function addCovidHtml(covid){
+  let covidResults = covid.positive
+  console.log(covidResults)
+}
+
+function displayResult(city) {
+  console.log(city);
+
+  let info = city.current;
+  let location = city.location;
   $('.welcome').addClass('hidden');
-  if(result.success === false){
+  if(city.success === false){
     $('.results').text('No city found!')
   }
   else{
@@ -72,7 +54,7 @@ function displayResult(result) {
     $('.feels').text(`feels like: ${info.feelslike}ºF`);
     $('.description').text(info.weather_descriptions[0]);
     $('.humidity').text(`humidity: ${info.humidity}`);
-    $('.wind').text(`wind speed: ${info.wind_speed}`)
+    $('.wind').text(`wind speed: ${info.wind_speed}`);
   }
 }
 
@@ -82,9 +64,9 @@ function getSubmit() {
     event.preventDefault();
     console.log('submit')
     let city = $('input[type="text"]').val();
-    let description = $('.description')
-    addHtml();
-    getData(city);
+    addCityHtml();
+    addCovidHtml()
+    getData(city, covid);
     $('input[type="text"]').val('');
   })
 }
