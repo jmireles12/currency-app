@@ -7,7 +7,7 @@ const requestOptions = {
   redirect: 'follow'
 };
 
-function getData(city, covid) {
+function getData(city) {
   let weatherApi= fetch(`http://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`);
   let covidApi = fetch(`https://api.covidtracking.com/v1/us/current.json`);
 
@@ -15,7 +15,7 @@ function getData(city, covid) {
     return Promise.all(values.map(r => r.json()));
   }).then(([city, covid]) => {
     displayResult(city)
-    addCovidHtml(covid)
+    covidResults(covid)
   }).catch(e => {
     console.log('caugth!');
     console.log(e);
@@ -34,14 +34,36 @@ function addCityHtml() {
     <p class="wind"></p>`)
 }
 
-function addCovidHtml(covid){
-  let covidResults = covid.positive
-  console.log(covidResults)
+function addCovidHtml(){
+  $('.covidBox').append(`<section class="details">
+  <h2 class="title"></h2>
+  <section class="covidDetails">
+  <p class="date"></p>
+  <p class="deaths"></p>
+  <p class="positive"></p>
+  <p class="ratio"></p>
+  </section>
+  </section>`)
+}
+
+function covidResults(covid) {
+  console.log(covid[0]);
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
+  today = mm + '/' + dd + '/' + yyyy
+  console.log(today);
+  $('.details').addClass('covid')
+  $('.title').text('Covid U.S. Stats');
+  $('.date').text('Date: ' + today);
+  $('.deaths').text('Total deaths: ' + covid[0].death);
+  $('.positive').text('Positive cases: ' + covid[0].positive)
+  $('.ratio').text('Deaths to Cases Ratio: ' + ((covid[0].death / covid[0].positive) * 100).toFixed(2) + '%');
 }
 
 function displayResult(city) {
   console.log(city);
-
   let info = city.current;
   let location = city.location;
   $('.welcome').addClass('hidden');
@@ -60,13 +82,13 @@ function displayResult(city) {
 
 function getSubmit() {
   $('form').submit(event =>{
-    $('.results').empty();
+    $('.results, .covidBox').empty();
     event.preventDefault();
     console.log('submit')
     let city = $('input[type="text"]').val();
     addCityHtml();
-    addCovidHtml()
-    getData(city, covid);
+    addCovidHtml();
+    getData(city);
     $('input[type="text"]').val('');
   })
 }

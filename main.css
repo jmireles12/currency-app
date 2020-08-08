@@ -7,6 +7,15 @@ body {
     flex-wrap: wrap;
 }
 
+.date, .deaths, .positive, .ratio, .title {
+    margin: 5px;
+    margin-right: 20px;
+}
+
+.title {
+    text-decoration: underline;
+}
+
 .container {
     background: #19d9ff;
     display: inline-grid;
@@ -19,6 +28,25 @@ body {
     -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+}
+
+.covid {
+    background: #19d9ff;
+    display: inline-grid;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+    border: 0px solid #00c7ff;
+    border-radius: 25px;
+    -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+}
+
+.covidDetails {
+    display: flex;
+    font-size: 15px;
 }
 
 .hidden {
@@ -77,6 +105,13 @@ input[type=text] {
 }
 
 .submit:hover {opacity: 1}
+
+@media all and (max-width: 800px) {
+    body {
+        display: block;
+        text-align: center;
+    };
+}
 
 @media all and (min-width: 800px) {
     body {
