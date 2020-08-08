@@ -8,7 +8,7 @@ const requestOptions = {
 };
 
 function getData(city) {
-  let weatherApi= fetch(`http://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`);
+  let weatherApi= fetch(`https://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`);
   let covidApi = fetch(`https://api.covidtracking.com/v1/us/current.json`);
 
   Promise.all([weatherApi, covidApi]).then(values => {
