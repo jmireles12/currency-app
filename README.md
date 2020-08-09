@@ -1,1 +1,1 @@
-This app will display the current price for the exchange of USD to any other currency.
+Weather app that also gives you the up to date stats of covid 19 to keep users informed on what is affecting the entire world.
