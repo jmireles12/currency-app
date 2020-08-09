@@ -80,6 +80,7 @@ h1 {
 .submit {
     font-weight: bold;
     font-size: large;
+    justify-content: center;
     margin-top: 20px;
     margin-bottom: 0px;
     cursor: pointer;
