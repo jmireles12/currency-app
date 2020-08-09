@@ -46,14 +46,13 @@ function addCovidHtml(){
   </section>`)
 }
 
+// adds information for covid section
 function covidResults(covid) {
-  console.log(covid[0]);
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   let yyyy = today.getFullYear();
   today = mm + '/' + dd + '/' + yyyy
-  console.log(today);
   $('.details').addClass('covid')
   $('.title').text('Covid U.S. Stats');
   $('.date').text('Date: ' + today);
@@ -62,8 +61,9 @@ function covidResults(covid) {
   $('.ratio').text('Deaths to Cases Ratio: ' + ((covid[0].death / covid[0].positive) * 100).toFixed(2) + '%');
 }
 
+
+// displays weather information according to city
 function displayResult(city) {
-  console.log(city);
   let info = city.current;
   let location = city.location;
   $('.welcome').addClass('hidden');
@@ -80,11 +80,12 @@ function displayResult(city) {
   }
 }
 
+// makes submit button work and clear information after
+// entering another city.
 function getSubmit() {
   $('form').submit(event =>{
     $('.results, .covidBox').empty();
     event.preventDefault();
-    console.log('submit')
     let city = $('input[type="text"]').val();
     addCityHtml();
     addCovidHtml();
@@ -94,6 +95,5 @@ function getSubmit() {
 }
 
 $(function () {
-  console.log('App loaded');
   getSubmit();
 })

@@ -10,8 +10,13 @@ link: https://jmireles12.github.io/weather-app/
 
 Welcome:
 
-![welcome screen](screenshots/welcome.png | width=100)
+![welcome screen](screenshots/welcome.png)
 
 Info:
 
 ![info](screenshots/info.png)
+
+## Built With
+* Html
+* Javascript
+* CSS
