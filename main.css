@@ -45,7 +45,7 @@ body {
 }
 
 .covidDetails {
-    display: flex;
+    display: block;
     font-size: 15px;
 }
 
@@ -112,7 +112,11 @@ input[type=text] {
     body {
         display: block;
         text-align: center;
-    };
+    }
+
+    .covidDetails {
+        display: flex;
+    }
 }
 
 @media all and (min-width: 800px) {
