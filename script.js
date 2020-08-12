@@ -8,7 +8,7 @@ const requestOptions = {
 };
 
 function getData(city) {
-  let weatherApi= fetch(`https://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}&units=f`);
+  let weatherApi= fetch(`https://api.weatherstack.com/current?access_key=5ac90993b4f558da906c2ec8bb20145a&query=${city}_united_states&units=f`);
   let covidApi = fetch(`https://api.covidtracking.com/v1/us/current.json`);
 
   Promise.all([weatherApi, covidApi]).then(values => {
@@ -17,7 +17,7 @@ function getData(city) {
     displayResult(city)
     covidResults(covid)
   }).catch(e => {
-    console.log('caugth!');
+    alert('Network Error!');
     console.log(e);
   })
 }
@@ -35,14 +35,13 @@ function addCityHtml() {
 }
 
 function addCovidHtml(){
-  $('.covidBox').append(`<section class="details">
-  <h2 class="title"></h2>
+  $('.covidBox').removeClass('hidden');
+  $('.covidBox').append(`<h2 class="title"></h2>
   <section class="covidDetails">
   <p class="date"></p>
   <p class="deaths"></p>
   <p class="positive"></p>
   <p class="ratio"></p>
-  </section>
   </section>`)
 }
 
