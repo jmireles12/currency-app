@@ -36,13 +36,10 @@ function addCityHtml() {
 
 function addCovidHtml(){
   $('.covidBox').removeClass('hidden');
-  $('.covidBox').append(`<h2 class="title"></h2>
-  <section class="covidDetails">
-  <p class="date"></p>
+  $('.covidDetails').html(`<p class="date"></p>
   <p class="deaths"></p>
   <p class="positive"></p>
-  <p class="ratio"></p>
-  </section>`)
+  <p class="ratio"></p>`)
 }
 
 // adds information for covid section
@@ -83,7 +80,7 @@ function displayResult(city) {
 // entering another city.
 function getSubmit() {
   $('form').submit(event =>{
-    $('.results, .covidBox').empty();
+    $('.results, .covidDetails').empty();
     event.preventDefault();
     let city = $('input[type="text"]').val();
     addCityHtml();
