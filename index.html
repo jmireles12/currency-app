@@ -10,17 +10,17 @@
     <section class="header">
         <h1>Weather App</h1>
         <form id="js-form">
-            <input type="text" placeholder="City, State...">
+            <label for="city">City and state</label>
+            <input type="text" name="city" placeholder="City, State...">
             <button class="submit" type="submit">Submit</button>
-            <span class="msg"></span>
         </form>
     </section>
     <section class="container">
         <h2 class="welcome">Welcome to the weather app, the app that gives you the weather and information on COVID in the U.S. Choose your city.</h2>
-        <span class="results"></span>
+        <section class="results"></section>
     </section>
     <section class="covidBox hidden">
-        <h2 class="title"></h2>
+        <h2 class="title">Covid U.S. Stats</h2>
         <section class="covidDetails"></section>
     </section>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

@@ -25,7 +25,6 @@ function getData(city) {
 function addCityHtml() {
   $('.container2').addClass('container');
   $('.results').append(`<h2 class="name"></h2>
-    <h3 class="region"></h3>
     <div class="icon"></div>
     <p class="temp"></p>
     <p class="description"></p>
@@ -68,7 +67,7 @@ function displayResult(city) {
   }
   else{
     $('.name').text(`${location.name}, ${location.region}`);
-    $('.temp').html(`<img src="${info.weather_icons[0]}">    ${info.temperature}ºF`)
+    $('.temp').html(`<img src="${info.weather_icons[0]}" alt="${info.weather_descriptions[0]}">    ${info.temperature}ºF`)
     $('.feels').text(`feels like: ${info.feelslike}ºF`);
     $('.description').text(info.weather_descriptions[0]);
     $('.humidity').text(`humidity: ${info.humidity}`);
